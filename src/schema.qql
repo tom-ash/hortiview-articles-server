@@ -2,11 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Author {
+type Article {
   id: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  title: String!
+  description: String!
+  content: String!
+  publishedOn: DateTime!
+  author: Author!
 }
 
 """
@@ -14,14 +18,31 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Author {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  articles: [Article!]!
+}
+
 type Query {
   authors: [Author!]!
 }
 
 type Mutation {
   createAuthor(authorCreateInput: AuthorCreateInput!): Author!
+  createArticle(articleCreateInput: ArticleCreateInput!): Article!
 }
 
 input AuthorCreateInput {
   name: String!
+}
+
+input ArticleCreateInput {
+  title: String!
+  description: String!
+  content: String!
+  authorId: Int!
+  publishedOn: DateTime!
 }

@@ -14,6 +14,10 @@ export class AuthorsService {
     return this.authorsRepository.find();
   }
 
+  async findOne(id: number): Promise<Author> {
+    return this.authorsRepository.findOneByOrFail({ id });
+  }
+
   create(input: AuthorCreateInput): Promise<Author> {
     const author = this.authorsRepository.create(input);
 

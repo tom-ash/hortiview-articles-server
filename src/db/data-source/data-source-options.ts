@@ -1,5 +1,6 @@
 import { DataSourceOptions } from 'typeorm';
 import { Author } from '../entities/author.entity';
+import { Article } from '../entities/article.entity';
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
@@ -8,7 +9,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'hortiview', // TODO: Move to .env
   password: 'password', // TODO: Move to .env
   database: 'hortiview_local', // TODO: Move to .env
-  entities: [Author],
+  entities: [Author, Article],
   migrations: [`${__dirname}/../migrations/*.ts`],
   synchronize: false,
 };

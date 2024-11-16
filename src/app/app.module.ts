@@ -5,6 +5,7 @@ import { join } from 'path';
 import { ApolloDriver } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from 'src/db/data-source/data-source-options';
+import { ArticlesModule } from './modules/articles/articles.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { dataSourceOptions } from 'src/db/data-source/data-source-options';
       driver: ApolloDriver,
     }),
     AuthorsModule,
+    ArticlesModule,
   ],
   controllers: [],
   providers: [],
