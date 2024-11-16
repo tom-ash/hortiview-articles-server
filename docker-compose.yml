@@ -1,0 +1,16 @@
+services:
+  postgres:
+    container_name: hortiview_db_local
+    image: postgres:15
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: hortiview
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hortiview_local
+    volumes:
+      - hortiview_db_local:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  hortiview_db_local:
