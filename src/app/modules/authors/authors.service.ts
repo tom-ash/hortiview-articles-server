@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Author } from './author.entity';
+import { Author } from '../../../db/entities/author.entity';
 
 @Injectable()
 export class AuthorsService {
@@ -8,6 +8,8 @@ export class AuthorsService {
     const author = new Author();
     author.id = 1;
     author.name = 'John Doe';
+    author.createdAt = new Date();
+    author.updatedAt = new Date();
 
     return [author];
   }
