@@ -17,3 +17,11 @@ scalar DateTime
 type Query {
   authors: [Author!]!
 }
+
+type Mutation {
+  createAuthor(authorCreateInput: AuthorCreateInput!): Author!
+}
+
+input AuthorCreateInput {
+  name: String!
+}

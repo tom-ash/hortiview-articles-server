@@ -1,16 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { Author } from '../../../db/entities/author.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { AuthorCreateInput } from './input-types/author-create-input';
 
 @Injectable()
 export class AuthorsService {
-  async findAll(): Promise<Author[]> {
-    // Temporary mocked DB implementation.
-    const author = new Author();
-    author.id = 1;
-    author.name = 'John Doe';
-    author.createdAt = new Date();
-    author.updatedAt = new Date();
+  constructor(
+    @InjectRepository(Author) private authorsRepository: Repository<Author>,
+  ) {}
 
-    return [author];
+  async find(): Promise<Author[]> {
+    return this.authorsRepository.find();
+  }
+
+  create(input: AuthorCreateInput): Promise<Author> {
+    const author = this.authorsRepository.create(input);
+
+    return this.authorsRepository.save(author);
   }
 }
