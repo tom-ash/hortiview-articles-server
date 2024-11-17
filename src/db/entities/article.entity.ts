@@ -22,6 +22,10 @@ export class Article extends BaseEntity {
   @Index()
   title: string;
 
+  @Column({ nullable: true })
+  @Index({ unique: true })
+  externalId?: number;
+
   @Field()
   @Column({
     length: 512,

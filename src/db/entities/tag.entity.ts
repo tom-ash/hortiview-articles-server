@@ -10,7 +10,7 @@ export class Tag extends BaseEntity {
   @Column({
     length: 256,
   })
-  @Index()
+  @Index({ unique: true })
   value: string;
 
   @ManyToMany(() => Article, (article) => article.tags)

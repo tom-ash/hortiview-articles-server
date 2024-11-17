@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-commonjs -d src/db/data-source/data-source.ts"
+    "typeorm": "typeorm-ts-node-commonjs -d src/db/data-source/data-source.ts",
+    "insert-articles": "ts-node src/db/inserters/insert-articles"
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",
@@ -55,7 +56,7 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
