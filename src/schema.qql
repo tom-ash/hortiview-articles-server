@@ -9,7 +9,7 @@ type Article {
   title: String!
   description: String!
   content: String!
-  publishedOn: DateTime!
+  publishedOn: String!
   author: Author!
 }
 
@@ -28,6 +28,7 @@ type Author {
 
 type Query {
   authors: [Author!]!
+  articles: [Article!]!
 }
 
 type Mutation {

@@ -18,10 +18,10 @@ export class ArticlesResolver {
     private articlesService: ArticlesService,
     private authorsService: AuthorsService,
   ) {}
-  // @Query((_returns) => [Author])
-  // authors(): Promise<Author[]> {
-  //   return this.authorsService.find();
-  // }
+  @Query((_returns) => [Article])
+  articles(): Promise<Article[]> {
+    return this.articlesService.find();
+  }
 
   @Mutation((_returns) => Article)
   createArticle(

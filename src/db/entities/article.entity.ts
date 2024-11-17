@@ -26,7 +26,7 @@ export class Article extends BaseEntity {
   })
   content: string;
 
-  @Field()
+  @Field((_type) => String!)
   @Column({
     type: 'date',
     name: 'published_on',

@@ -10,9 +10,9 @@ export class ArticlesService {
     @InjectRepository(Article) private articleRepository: Repository<Article>,
   ) {}
 
-  // async find(): Promise<Author[]> {
-  //   return this.authorsRepository.find();
-  // }
+  async find(): Promise<Article[]> {
+    return this.articleRepository.find();
+  }
 
   create(input: ArticleCreateInput): Promise<Article> {
     const author = this.articleRepository.create(input);
