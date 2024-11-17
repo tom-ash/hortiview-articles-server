@@ -14,6 +14,10 @@ export class ArticlesService {
     return this.articleRepository.find();
   }
 
+  async findOne(id: number): Promise<Article> {
+    return this.articleRepository.findOneByOrFail({ id });
+  }
+
   create(input: ArticleCreateInput): Promise<Article> {
     const author = this.articleRepository.create(input);
     return this.articleRepository.save(author);

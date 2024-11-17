@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import {
   CreateDateColumn,
   Entity,
@@ -11,7 +11,7 @@ import {
 @ObjectType()
 @Entity()
 export abstract class BaseEntity extends TypeORMBaseEntity {
-  @Field((_type) => Int)
+  @Field((_type) => ID)
   @PrimaryGeneratedColumn()
   id: number;
 

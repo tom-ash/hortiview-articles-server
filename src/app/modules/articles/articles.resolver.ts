@@ -5,6 +5,7 @@ import {
   Args,
   ResolveField,
   Parent,
+  ID,
 } from '@nestjs/graphql';
 import { Author } from '../../../db/entities/author.entity';
 import { ArticlesService } from './articles.service';
@@ -21,6 +22,11 @@ export class ArticlesResolver {
   @Query((_returns) => [Article])
   articles(): Promise<Article[]> {
     return this.articlesService.find();
+  }
+
+  @Query((_returns) => Article)
+  article(@Args('id', { type: () => ID }) id: number): Promise<Article> {
+    return this.articlesService.findOne(Number(id));
   }
 
   @Mutation((_returns) => Article)
