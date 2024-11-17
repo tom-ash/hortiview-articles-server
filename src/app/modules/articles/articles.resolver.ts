@@ -12,6 +12,7 @@ import { ArticlesService } from './articles.service';
 import { ArticleCreateInput } from './input-types/article-create-input';
 import { Article } from 'src/db/entities/article.entity';
 import { AuthorsService } from '../authors/authors.service';
+import { Tag } from 'src/db/entities/tag.entity';
 
 @Resolver((_of) => Article)
 export class ArticlesResolver {
@@ -29,15 +30,20 @@ export class ArticlesResolver {
     return this.articlesService.findOne(Number(id));
   }
 
+  @ResolveField((_returns) => Author)
+  author(@Parent() article: Article): Promise<Author> {
+    return this.authorsService.findOne(article.authorId);
+  }
+
+  @ResolveField((_returns) => [Tag])
+  tags(@Parent() article: Article): Tag[] {
+    return article.tags;
+  }
+
   @Mutation((_returns) => Article)
   createArticle(
     @Args('articleCreateInput') input: ArticleCreateInput,
   ): Promise<Article> {
     return this.articlesService.create(input);
-  }
-
-  @ResolveField((_returns) => Author)
-  author(@Parent() article: Article): Promise<Author> {
-    return this.authorsService.findOne(article.authorId);
   }
 }

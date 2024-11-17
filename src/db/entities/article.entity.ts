@@ -1,8 +1,16 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { BaseEntity } from './base-entity.entity';
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm';
 import { IsDate } from 'class-validator';
 import { Author } from './author.entity';
+import { Tag } from './tag.entity';
 
 @ObjectType()
 @Entity()
@@ -45,5 +53,7 @@ export class Article extends BaseEntity {
   @JoinColumn({ name: 'author_id' })
   author: Author;
 
-  // TODO: Add Tag reference.
+  @ManyToMany(() => Tag, (tag) => tag.articles)
+  @Field(() => [Tag], { nullable: true })
+  tags: Tag[];
 }

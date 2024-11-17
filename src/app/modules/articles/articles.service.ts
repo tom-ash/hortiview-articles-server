@@ -11,11 +11,20 @@ export class ArticlesService {
   ) {}
 
   async find(): Promise<Article[]> {
-    return this.articleRepository.find();
+    return this.articleRepository.find({
+      relations: ['tags'],
+    });
   }
 
   async findOne(id: number): Promise<Article> {
-    return this.articleRepository.findOneByOrFail({ id });
+    try {
+      return this.articleRepository.findOneOrFail({
+        where: { id },
+        relations: ['tags'],
+      });
+    } catch (error) {
+      throw new Error(`Article id ${id} not found.`);
+    }
   }
 
   create(input: ArticleCreateInput): Promise<Article> {

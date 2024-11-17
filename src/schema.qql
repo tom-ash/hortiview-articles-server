@@ -2,6 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Tag {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  value: String!
+  articles: [Article!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Article {
   id: ID!
   createdAt: DateTime!
@@ -11,12 +24,8 @@ type Article {
   content: String!
   publishedOn: String!
   author: Author!
+  tags: [Tag!]
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Author {
   id: ID!
