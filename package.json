@@ -13,13 +13,15 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "jest --runInBand --verbose",
+    "test:setup": "ts-node -r tsconfig-paths/register ./test/db/helpers/setup-test-db",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "typeorm-ts-node-commonjs -d src/db/data-source/data-source.ts",
-    "insert-articles": "ts-node src/db/inserters/insert-articles"
+    "insert-articles": "ts-node src/db/inserters/insert-articles",
+    "migrations": "npm run typeorm migration:run"
   },
   "dependencies": {
     "@apollo/server": "^4.11.2",
@@ -61,12 +63,16 @@
     "typescript": "^5.1.3"
   },
   "jest": {
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/../src/$1",
+      "^test/(.*)$": "<rootDir>/$1"
+    },
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "test",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

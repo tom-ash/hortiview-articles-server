@@ -11,6 +11,20 @@ services:
     volumes:
       - hortiview_db_local:/var/lib/postgresql/data
     restart: always
+    
+  postgres_test:
+    container_name: hortiview_db_local_test
+    image: postgres:15
+    ports:
+      - '5434:5432' # TODO: Move to .env
+    environment:
+      POSTGRES_USER: hortiview_test # TODO: Move to .env
+      POSTGRES_PASSWORD: password_test # TODO: Move to .env
+      POSTGRES_DB: hortiview_local_test # TODO: Move to .env
+    volumes:
+      - hortiview_db_local_test:/var/lib/postgresql/data
+    restart: always
 
 volumes:
   hortiview_db_local:
+  hortiview_db_local_test:
