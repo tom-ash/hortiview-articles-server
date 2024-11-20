@@ -17,12 +17,12 @@ export class Tag extends BaseEntity {
   @JoinTable({
     name: 'articles_tags',
     joinColumn: {
-      name: 'tag_id', // Custom column name for the user side
-      referencedColumnName: 'id', // Referencing the primary key of the User entity
+      name: 'tag_id',
+      referencedColumnName: 'id',
     },
     inverseJoinColumn: {
-      name: 'article_id', // Custom column name for the role side
-      referencedColumnName: 'id', // Referencing the primary key of the Role entity
+      name: 'article_id',
+      referencedColumnName: 'id',
     },
   })
   @Field(() => [Article], { nullable: true })
