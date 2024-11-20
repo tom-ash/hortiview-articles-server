@@ -37,12 +37,23 @@ type Author {
 
 type Query {
   authors: [Author!]!
+  articles: [Article!]!
+  article(id: ID!): Article!
 }
 
 type Mutation {
   createAuthor(authorCreateInput: AuthorCreateInput!): Author!
+  createArticle(articleCreateInput: ArticleCreateInput!): Article!
 }
 
 input AuthorCreateInput {
   name: String!
+}
+
+input ArticleCreateInput {
+  title: String!
+  description: String!
+  content: String!
+  authorId: Int!
+  publishedOn: DateTime!
 }
